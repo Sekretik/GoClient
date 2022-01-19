@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class ClientMain implements Runnable{
     public GamePanel panel;
     Socket socket = new Socket();
-    DataOutputStream outputStream;
+    static DataOutputStream outputStream;
     DataInputStream inputStream;
     Thread t;
 
@@ -33,12 +33,24 @@ public class ClientMain implements Runnable{
         t.start();
     }
 
-    public void sendMessage(String str){
+    public static void sendMessage(String str){
         try {
             outputStream.writeUTF(str);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void back() {
+        JSONObject json = new JSONObject();
+        json.put("cmd","back");
+        sendMessage(json.toJSONString());
+    }
+
+    public static void forward() {
+        JSONObject json = new JSONObject();
+        json.put("cmd","forward");
+        sendMessage(json.toJSONString());
     }
 
     @Override
@@ -75,7 +87,7 @@ public class ClientMain implements Runnable{
         }
     }
 
-    public void sendStone(int x, int y) {
+    public static void sendStone(int x, int y) {
         JSONObject json = new JSONObject();
         json.put("cmd","setStone");
         JSONObject stone = new JSONObject();
