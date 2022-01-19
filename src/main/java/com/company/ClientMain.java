@@ -66,6 +66,8 @@ public class ClientMain implements Runnable{
                     }
                     stones.add(new Stone(x,y,team));
                 }
+                panel.bPanel.setLabel1Text("Белых захвачено: " + stonesJSON.get("deadWhite"));
+                panel.bPanel.setLabel2Text("Черных захвачено: " + stonesJSON.get("deadBlack"));
                 panel.setArray(stones);
             } catch (IOException | ParseException e) {
                 e.printStackTrace();

@@ -9,13 +9,15 @@ public class GamePanel extends JPanel {
     private ArrayList<Stone> stones = new ArrayList<>();
     private int lines;
     private int sizeBtwLine;
+    public ButtonsPanel bPanel;
 
-    public GamePanel(int lines, int sizeBtwLine, ClientMain client){
+    public GamePanel(int lines, int sizeBtwLine, ClientMain client, ButtonsPanel bPanel){
         client.panel = this;
         setSize(sizeBtwLine * lines,sizeBtwLine * lines);
         addMouseListener(new MousePosition(client));
         this.lines = lines;
         this.sizeBtwLine = sizeBtwLine;
+        this.bPanel = bPanel;
     }
 
     public void Board(){
